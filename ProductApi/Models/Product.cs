@@ -29,5 +29,10 @@ namespace ProductApi.Models
         [Required]
         [Display(Name = "relatedProducts")]
         public virtual List<RelatedProduct> RelatedProducts { get; set; }
+        
+        [Required]
+        [Display(Name = "relatedReviews")]
+        public virtual List<Review> RelatedReviews { get; set; }
+    
     }
 }
