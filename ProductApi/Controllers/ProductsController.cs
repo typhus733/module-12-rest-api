@@ -64,6 +64,7 @@ namespace ProductApi.Controllers
         {
             try
             {
+                product.Timestamp = DateTime.Now;
                 _context.Products.Add(product);
                 _context.SaveChanges();
 
@@ -86,7 +87,7 @@ namespace ProductApi.Controllers
             {
                 var productList = _context.Products as IQueryable<Product>;
                 var product = productList.First(p => p.ProductNumber.Equals(productNumber));
-
+                newProduct.Timestamp = DateTime.Now;
                 _context.Products.Remove(product);
                 _context.Products.Add(newProduct);
                 _context.SaveChanges();
@@ -139,6 +140,7 @@ namespace ProductApi.Controllers
                 product.Name = newProduct.Name ?? product.Name;
                 product.Price = newProduct.Price ?? product.Price;
                 product.RelatedProducts = newProduct.RelatedProducts ?? product.RelatedProducts;
+                product.Timestamp = DateTime.Now;
 
                 _context.Products.Update(product);
                 _context.SaveChanges();

@@ -33,6 +33,9 @@ namespace ProductApi.Models
         [Required]
         [Display(Name = "relatedReviews")]
         public virtual List<Review> RelatedReviews { get; set; }
+
+        [Display(Name = "timestamp")]
+        public virtual DateTime Timestamp { get; set; }
     
     }
 }

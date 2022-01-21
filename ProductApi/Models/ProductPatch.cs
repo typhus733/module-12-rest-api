@@ -23,5 +23,8 @@ namespace ProductApi.Models
 
         [Display(Name = "relatedProduct")]
         public virtual List<RelatedProduct> RelatedProducts { get; set; }
+
+        [Display(Name = "timestamp")]
+        public virtual DateTime Timestamp { get; set; }
     }
 }

@@ -33,6 +33,7 @@ namespace ProductApi.Models
 
                 List<RelatedProduct> relatedProducts = new List<RelatedProduct>();
 
+
                 var hasRelatedProduct = Convert.ToBoolean(rnd.Next(0, 2));
                 if (hasRelatedProduct)
                 {
@@ -65,7 +66,8 @@ namespace ProductApi.Models
                     Name = $"{adjective} {material} {name}",
                     Price = (double)rnd.Next(1000, 9000) / 100,
                     Department = department,
-                    RelatedProducts = relatedProducts
+                    RelatedProducts = relatedProducts,
+                    Timestamp = DateTime.Now
                 };
             }));
 
