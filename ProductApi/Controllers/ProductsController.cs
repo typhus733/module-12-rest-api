@@ -65,6 +65,14 @@ namespace ProductApi.Controllers
             try
             {
                 product.Timestamp = DateTime.Now;
+                if (product.RelatedReviews == null)
+                {
+                    product.RelatedReviews = new List<Review>();
+                }
+                if (product.RelatedProducts == null)
+                {
+                    product.RelatedProducts = new List<RelatedProduct>();
+                }
                 _context.Products.Add(product);
                 _context.SaveChanges();
 
@@ -116,6 +124,32 @@ namespace ProductApi.Controllers
                 _context.SaveChanges();
 
                 return new CreatedResult($"/products/{product.ProductNumber.ToLower()}", product);
+            }
+            catch (Exception e)
+            {
+                // Typically an error log is produced here
+                return ValidationProblem(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("Delete By Date")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<Product> DeleteProductByDate([FromBody] string timestamp)
+        {
+            try
+            {
+                DateTime purgeDate = DateTime.Parse(timestamp);
+                var productList = _context.Products as IQueryable<Product>;
+                var RemoveList = productList.Where(p => p.Timestamp <= purgeDate);
+                foreach (Product p in RemoveList)
+                {
+                    _context.Products.Remove(p);
+                }
+                _context.SaveChanges();
+                
+                return Ok(_context.Products);
             }
             catch (Exception e)
             {
@@ -185,7 +219,6 @@ namespace ProductApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Review> AddProductReview([FromRoute] string productNumber, [FromBody] Review review)
         {
-
             try
             {
                 var productList = _context.Products as IQueryable<Product>;
@@ -205,9 +238,6 @@ namespace ProductApi.Controllers
                 // Typically an error log is produced here
                 return ValidationProblem(e.Message);
             }
-
         }
-
     }
-
 }
