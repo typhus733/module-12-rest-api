@@ -190,7 +190,8 @@ namespace ProductApi.Controllers
             {
                 var productList = _context.Products as IQueryable<Product>;
                 var product = productList.First(p => p.ProductNumber.Equals(productNumber));
-
+                int reviewCount = product.RelatedReviews.Count + 1;
+                review.ReviewNumber = reviewCount;
                 product.RelatedReviews.Add(review);
 
                 _context.Products.Update(product);

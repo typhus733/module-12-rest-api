@@ -9,9 +9,8 @@ namespace ProductApi.Models
     public class Review
     {
         [Key]
-        [Required]
         [Display(Name = "reviewNumber")]
-        public string ReviewNumber { get; set; }
+        public int ReviewNumber { get; set; }
 
         [Required]
         [Display(Name = "reviewAuthor")]

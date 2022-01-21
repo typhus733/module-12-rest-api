@@ -67,7 +67,8 @@ namespace ProductApi.Models
                     Price = (double)rnd.Next(1000, 9000) / 100,
                     Department = department,
                     RelatedProducts = relatedProducts,
-                    Timestamp = DateTime.Now
+                    Timestamp = DateTime.Now,
+                    RelatedReviews = new List<Review>()
                 };
             }));
 
