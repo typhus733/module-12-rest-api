@@ -29,6 +29,7 @@ namespace ProductApi
         {
             services.AddControllers();
             services.AddDbContext<ProductContext>(opt => opt.UseLazyLoadingProxies().UseInMemoryDatabase("Products"));
+            services.AddDbContext<SellerContext>(opt => opt.UseLazyLoadingProxies().UseInMemoryDatabase("Sellers"));
             services.AddApiVersioning(opt => opt.ReportApiVersions = true);
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
             {
