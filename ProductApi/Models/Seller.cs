@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductApi.Models
 {
-    public class Sellers
+    public class Seller
     {
         [Key]
         [Required]
@@ -18,8 +18,11 @@ namespace ProductApi.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Inventory")]
-        public Dictionary<string, int> Inventory { get; set; }
+        [Display(Name = "Products Sold")]
+        public virtual List<Product> ProductsSold { get; set; }
+
+        [Display(Name = "Available Stock")]
+        public int Stock { get; set; }
+
     }
 }

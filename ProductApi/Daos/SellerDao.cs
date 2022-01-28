@@ -13,6 +13,6 @@ namespace ProductApi.Daos
         {
         }
 
-        public DbSet<Sellers> Sellers { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
     }
 }

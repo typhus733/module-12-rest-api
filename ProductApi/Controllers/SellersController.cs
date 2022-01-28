@@ -15,7 +15,7 @@ namespace ProductApi.Controllers
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
-    public class SellerController : ControllerBase
+    public class SellersController : ControllerBase
     {
         private readonly SellerContext _context;
         [HttpGet]
@@ -23,7 +23,7 @@ namespace ProductApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IQueryable<Product>> GetProducts()
         {
-            var result = _context.Sellers as IQueryable<Sellers>;
+            var result = _context.Sellers as IQueryable<Seller>;
 
             return Ok(result
                 .OrderBy(p => p.Id)
